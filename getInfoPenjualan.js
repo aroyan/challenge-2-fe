@@ -3,7 +3,53 @@
  * @param {object} dataPenjualan
  * @return {object}
  */
-const getInfoPenjualan = (dataPenjualan) => {};
+const getInfoPenjualan = (dataPenjualan) => {
+  const totalModal = dataPenjualan
+    .map((x) => x.hargaBeli * (x.totalTerjual + x.sisaStok))
+    .reduce((acc, prev) => acc + prev);
+
+  const totalPenjualan = dataPenjualan
+    .map((x) => x.hargaJual * (x.totalTerjual + x.sisaStok))
+    .reduce((acc, prev) => acc + prev);
+
+  const totalKeuntungan =
+    dataPenjualan
+      .map((x) => x.hargaJual * (x.totalTerjual + x.sisaStok))
+      .reduce((acc, prev) => acc + prev) - totalModal;
+
+  const persentaseKeuntungan = Math.round(
+    (totalKeuntungan / totalPenjualan) * 100
+  );
+
+  const produkBukuTerlaris = dataPenjualan.sort(
+    (x, y) => y.totalTerjual - x.totalTerjual
+  )[0].namaProduk;
+
+  const penulisTerlaris = dataPenjualan.reduce((allSeler, seller) => {
+    allSeler[seller.penulis] ??= 0;
+    allSeler[seller.penulis] += seller.totalTerjual;
+    return allSeler;
+  }, {});
+
+  let keys = Object.keys(penulisTerlaris);
+  let min = keys[0];
+  let max = keys[0];
+
+  for (let i = 1; i < keys.length; i++) {
+    let val = keys[i];
+    if (penulisTerlaris[val] < penulisTerlaris[min]) min = val;
+    if (penulisTerlaris[val] > penulisTerlaris[max]) max = val;
+  }
+
+  const result = {
+    totalKeuntungan: `Rp. ${totalKeuntungan.toLocaleString()}`,
+    totalModal: `Rp. ${totalModal.toLocaleString()}`,
+    persentaseKeuntungan: `${persentaseKeuntungan}%`,
+    produkBukuTerlaris,
+    penulisTerlaris: max,
+  };
+  return result;
+};
 
 const dataPenjualanNovel = [
   {
@@ -43,3 +89,5 @@ const dataPenjualanNovel = [
     sisaStok: 56,
   },
 ];
+
+console.log(getInfoPenjualan(dataPenjualanNovel));
