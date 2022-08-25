@@ -18,5 +18,6 @@ const getAngkaTerbesarKedua = (arrayOfNumbers) => {
 
 console.log(getAngkaTerbesarKedua([3, 4, 5, 2, 1, 2, 5, 9, 11, 22, 35, 99]));
 console.log(getAngkaTerbesarKedua([2, 2, 2, 2, 2, 2, 2, 2]));
+console.log(getAngkaTerbesarKedua([9, 4, 7, 7, 4, 3, 2, 2, 8]));
 console.log(getAngkaTerbesarKedua());
 console.log(getAngkaTerbesarKedua(0));
