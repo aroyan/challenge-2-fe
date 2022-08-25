@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {array} arrayOfNumbers
+ * @returns number
+ */
 const getAngkaTerbesarKedua = (arrayOfNumbers) => {
   if (arrayOfNumbers <= 1) {
     return `Error: length of the array of numbers cannot be ${arrayOfNumbers.length}, minimum item to be compared is at least 2`;

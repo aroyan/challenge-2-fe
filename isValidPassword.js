@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {string} password
+ * @returns boolean
+ */
 const isValidPassword = (password) => {
   const passwordValidation = new RegExp(
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,

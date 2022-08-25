@@ -1,21 +1,24 @@
 /**
  *
- * @param {object} dataPenjualan
+ * @param {array} dataPenjualan
  * @return {object}
  */
 const getInfoPenjualan = (dataPenjualan) => {
-  const totalModal = dataPenjualan
-    .map((x) => x.hargaBeli * (x.totalTerjual + x.sisaStok))
-    .reduce((acc, prev) => acc + prev);
+  const totalModal = dataPenjualan.reduce(
+    (acc, curr) => acc + curr.hargaBeli * (curr.totalTerjual + curr.sisaStok),
+    0
+  );
 
-  const totalPenjualan = dataPenjualan
-    .map((x) => x.hargaJual * (x.totalTerjual + x.sisaStok))
-    .reduce((acc, prev) => acc + prev);
+  const totalPenjualan = dataPenjualan.reduce(
+    (acc, curr) => acc + curr.hargaJual * (curr.totalTerjual + curr.sisaStok),
+    0
+  );
 
   const totalKeuntungan =
-    dataPenjualan
-      .map((x) => x.hargaJual * (x.totalTerjual + x.sisaStok))
-      .reduce((acc, prev) => acc + prev) - totalModal;
+    dataPenjualan.reduce(
+      (acc, curr) => acc + curr.hargaJual * (curr.totalTerjual + curr.sisaStok),
+      0
+    ) - totalModal;
 
   const persentaseKeuntungan = Math.round(
     (totalKeuntungan / totalPenjualan) * 100

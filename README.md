@@ -45,3 +45,9 @@
 ## Split Name
 
 > Create a function to return object
+
+## Second highest
+
+## Get Sum of Array of Objects
+
+## Get selling summary

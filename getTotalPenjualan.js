@@ -1,12 +1,13 @@
 /**
  *
- * @param {object} dataPenjualan
+ * @param {array} dataPenjualan
  * @return {number}
  */
 const getTotalPenjualan = (dataPenjualan) => {
-  const result = dataPenjualan
-    .map((x) => x.totalTerjual)
-    .reduce((acc, prev) => acc + prev);
+  const result = dataPenjualan.reduce(
+    (acc, curr) => acc + curr.totalTerjual,
+    0
+  );
   return result;
 };
 

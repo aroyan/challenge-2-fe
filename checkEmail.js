@@ -1,8 +1,14 @@
+/**
+ *
+ * @param {string} email
+ * @returns string
+ */
 const checkEmail = (email) => {
   const emailValidation = new RegExp(
     /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/,
     "gm"
   );
+
   if (email === undefined) {
     return `Error: invalid parameter cannot be ${typeof email}`;
   } else if (typeof email === "number") {

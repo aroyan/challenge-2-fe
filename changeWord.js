@@ -1,3 +1,10 @@
+/**
+ *
+ * @param {string} selectedText
+ * @param {string} changedText
+ * @param {string} text
+ * @returns string
+ */
 const changeWord = (selectedText, changedText, text) => {
   const selected = new RegExp(selectedText, "i");
   return text.replace(selected, changedText);

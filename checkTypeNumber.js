@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {number} givenNumber
+ * @returns string
+ */
 const checkTypeNumber = (givenNumber) => {
   if (givenNumber === undefined) {
     return "Error: Bro where is the parameter?";

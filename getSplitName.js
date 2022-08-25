@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {string} personName
+ * @returns object
+ */
 const getSplitName = (personName) => {
   const result = {
     firstName: "",
