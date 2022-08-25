@@ -4,9 +4,11 @@ const checkEmail = (email) => {
     "gm"
   );
   if (email === undefined) {
-    return `Error: parameter cannot be ${typeof email}`;
+    return `Error: invalid parameter cannot be ${typeof email}`;
   } else if (typeof email === "number") {
-    return `Error: invalid argument cannot be ${typeof email}`;
+    return `Error: invalid parameter cannot be ${typeof email}`;
+  } else if (!email.includes("@")) {
+    return "Error: valid email should have @ symbol";
   } else {
     return emailValidation.test(email) ? "VALID" : "INVALID";
   }
