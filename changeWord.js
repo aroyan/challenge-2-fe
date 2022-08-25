@@ -1,5 +1,6 @@
 const changeWord = (selectedText, changedText, text) => {
-  return text.replace(selectedText, changedText);
+  const selected = new RegExp(selectedText, "i");
+  return text.replace(selected, changedText);
 };
 
 const kalimat1 = "Andini sangat mencintai kamu selamanya";
