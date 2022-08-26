@@ -1,5 +1,7 @@
 # Challenge 2 - Binar Academy Frontend JavaScript | Studi Independen Kampus Merdeka
 
+> To run test make sure to install the dependencies first using `npm install` or `yarn` and then run `npx vitest`
+
 > There is 8 questions from this challenge, here's the lists:
 
 ## Change Word
