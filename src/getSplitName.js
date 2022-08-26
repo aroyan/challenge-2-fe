@@ -4,12 +4,6 @@
  * @returns object
  */
 export const getSplitName = (personName) => {
-  const result = {
-    firstName: "",
-    middleName: "",
-    lastName: "",
-  };
-
   if (typeof personName !== "string") {
     return `Error: parameter type cannot be ${typeof personName}`;
   }

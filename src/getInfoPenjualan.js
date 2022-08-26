@@ -4,6 +4,9 @@
  * @return {object}
  */
 export const getInfoPenjualan = (dataPenjualan) => {
+  if (!Array.isArray(dataPenjualan)) {
+    return "Error : Invalid data type, make sure you pass an Array of Objects";
+  }
   const totalModal = dataPenjualan.reduce(
     (acc, curr) => acc + curr.hargaBeli * (curr.totalTerjual + curr.sisaStok),
     0
@@ -103,5 +106,17 @@ if (import.meta.vitest) {
       produkBukuTerlaris: "Garis Waktu",
       penulisTerlaris: "Tere Liye",
     });
+    expect(getInfoPenjualan()).toBe(
+      "Error : Invalid data type, make sure you pass an Array of Objects"
+    );
+    expect(getInfoPenjualan({})).toBe(
+      "Error : Invalid data type, make sure you pass an Array of Objects"
+    );
+    expect(getInfoPenjualan("Hello world")).toBe(
+      "Error : Invalid data type, make sure you pass an Array of Objects"
+    );
+    expect(getInfoPenjualan(2022)).toBe(
+      "Error : Invalid data type, make sure you pass an Array of Objects"
+    );
   });
 }

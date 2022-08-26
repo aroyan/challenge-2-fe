@@ -4,6 +4,9 @@
  * @return {number}
  */
 export const getTotalPenjualan = (dataPenjualan) => {
+  if (!Array.isArray(dataPenjualan)) {
+    return "Error: Invalid data type, make sure you pass an Array of Objects";
+  }
   const result = dataPenjualan.reduce(
     (acc, curr) => acc + curr.totalTerjual,
     0
@@ -42,5 +45,17 @@ if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest;
   it("getTotalPenjualan", () => {
     expect(getTotalPenjualan(dataPenjualanPakAldi)).toBe(307);
+    expect(getTotalPenjualan()).toBe(
+      "Error: Invalid data type, make sure you pass an Array of Objects"
+    );
+    expect(getTotalPenjualan("Hello")).toBe(
+      "Error: Invalid data type, make sure you pass an Array of Objects"
+    );
+    expect(getTotalPenjualan({})).toBe(
+      "Error: Invalid data type, make sure you pass an Array of Objects"
+    );
+    expect(getTotalPenjualan(10000)).toBe(
+      "Error: Invalid data type, make sure you pass an Array of Objects"
+    );
   });
 }
