@@ -1,0 +1,11 @@
+{
+  "name": "challenge-02",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/aroyan/challenge-2-fe.git",
+  "author": "Aroyan Bakti Setiawan <abssneakers@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^0.22.1"
+  }
+}

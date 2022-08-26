@@ -3,7 +3,7 @@
  * @param {number} givenNumber
  * @returns string
  */
-const checkTypeNumber = (givenNumber) => {
+export const checkTypeNumber = (givenNumber) => {
   if (givenNumber === undefined) {
     return "Error: Bro where is the parameter?";
   } else if (typeof givenNumber !== "number") {
@@ -13,9 +13,14 @@ const checkTypeNumber = (givenNumber) => {
   }
 };
 
-console.log(checkTypeNumber(2));
-console.log(checkTypeNumber(1));
-console.log(checkTypeNumber("3"));
-console.log(checkTypeNumber({}));
-console.log(checkTypeNumber([]));
-console.log(checkTypeNumber());
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest;
+  it("checkTypeNumber", () => {
+    expect(checkTypeNumber(2)).toBe("GENAP");
+    expect(checkTypeNumber(1)).toBe("GANJIL");
+    expect(checkTypeNumber("3")).toBe("Error: Invalid data type");
+    expect(checkTypeNumber({})).toBe("Error: Invalid data type");
+    expect(checkTypeNumber([])).toBe("Error: Invalid data type");
+    expect(checkTypeNumber()).toBe("Error: Bro where is the parameter?");
+  });
+}

@@ -3,7 +3,7 @@
  * @param {string} email
  * @returns string
  */
-const checkEmail = (email) => {
+export const checkEmail = (email) => {
   const emailValidation = new RegExp(
     /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/,
     "gm"
@@ -20,13 +20,18 @@ const checkEmail = (email) => {
   }
 };
 
-const listOfEmails = [
-  "bakti@binar.co.id",
-  "bakti@binar.com",
-  "bakti@binar",
-  "bakti",
-  123142124,
-  undefined,
-];
-
-listOfEmails.forEach((email) => console.log(checkEmail(email)));
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest;
+  it("checkEmail", () => {
+    expect(checkEmail("bakti@binar.co.id")).toBe("VALID");
+    expect(checkEmail("bakti@binar.com")).toBe("VALID");
+    expect(checkEmail("bakti@binar")).toBe("INVALID");
+    expect(checkEmail("bakti")).toBe("Error: valid email should have @ symbol");
+    expect(checkEmail(123142124)).toBe(
+      "Error: invalid parameter cannot be number"
+    );
+    expect(checkEmail(undefined)).toBe(
+      "Error: invalid parameter cannot be undefined"
+    );
+  });
+}

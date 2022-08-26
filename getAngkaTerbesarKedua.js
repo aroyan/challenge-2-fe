@@ -3,7 +3,7 @@
  * @param {array} arrayOfNumbers
  * @returns number
  */
-const getAngkaTerbesarKedua = (arrayOfNumbers) => {
+export const getAngkaTerbesarKedua = (arrayOfNumbers) => {
   if (arrayOfNumbers <= 1) {
     return `Error: length of the array of numbers cannot be ${arrayOfNumbers.length}, minimum item to be compared is at least 2`;
   } else if (arrayOfNumbers === undefined) {
@@ -21,8 +21,19 @@ const getAngkaTerbesarKedua = (arrayOfNumbers) => {
   }
 };
 
-console.log(getAngkaTerbesarKedua([3, 4, 5, 2, 1, 2, 5, 9, 11, 22, 35, 99]));
-console.log(getAngkaTerbesarKedua([2, 2, 2, 2, 2, 2, 2, 2]));
-console.log(getAngkaTerbesarKedua([9, 4, 7, 7, 4, 3, 2, 2, 8]));
-console.log(getAngkaTerbesarKedua());
-console.log(getAngkaTerbesarKedua(0));
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest;
+  it("getAngkaTerbesarKedua", () => {
+    expect(
+      getAngkaTerbesarKedua([3, 4, 5, 2, 1, 2, 5, 9, 11, 22, 35, 99])
+    ).toBe(35);
+    expect(getAngkaTerbesarKedua([2, 2, 2, 2, 2, 2, 2, 2])).toBe(
+      "Error: cannot get 2nd highest from the same numbers"
+    );
+    expect(getAngkaTerbesarKedua([9, 4, 7, 7, 4, 3, 2, 2, 8])).toBe(8);
+    expect(getAngkaTerbesarKedua()).toBe("Error: parameter cannot be empty");
+    expect(getAngkaTerbesarKedua(0)).toBe(
+      "Error: length of the array of numbers cannot be undefined, minimum item to be compared is at least 2"
+    );
+  });
+}
