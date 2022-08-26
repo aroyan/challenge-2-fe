@@ -3,7 +3,7 @@
  * @param {array} dataPenjualan
  * @return {number}
  */
-const getTotalPenjualan = (dataPenjualan) => {
+export const getTotalPenjualan = (dataPenjualan) => {
   const result = dataPenjualan.reduce(
     (acc, curr) => acc + curr.totalTerjual,
     0
@@ -11,7 +11,7 @@ const getTotalPenjualan = (dataPenjualan) => {
   return result;
 };
 
-const dataPenjualanPakAldi = [
+export const dataPenjualanPakAldi = [
   {
     namaProduct: "Sepatu Futsal Nike Vapor Academy 8",
     hargaSatuan: 760000,
@@ -38,4 +38,9 @@ const dataPenjualanPakAldi = [
   },
 ];
 
-console.log(getTotalPenjualan(dataPenjualanPakAldi));
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest;
+  it("getTotalPenjualan", () => {
+    expect(getTotalPenjualan(dataPenjualanPakAldi)).toBe(307);
+  });
+}

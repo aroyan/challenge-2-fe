@@ -3,7 +3,7 @@
  * @param {array} dataPenjualan
  * @return {object}
  */
-const getInfoPenjualan = (dataPenjualan) => {
+export const getInfoPenjualan = (dataPenjualan) => {
   const totalModal = dataPenjualan.reduce(
     (acc, curr) => acc + curr.hargaBeli * (curr.totalTerjual + curr.sisaStok),
     0
@@ -54,7 +54,7 @@ const getInfoPenjualan = (dataPenjualan) => {
   return result;
 };
 
-const dataPenjualanNovel = [
+export const dataPenjualanNovel = [
   {
     idProduct: "BOOK002421",
     namaProduk: "Pulang - Pergi",
@@ -93,4 +93,15 @@ const dataPenjualanNovel = [
   },
 ];
 
-console.log(getInfoPenjualan(dataPenjualanNovel));
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest;
+  it("getInfoPenjualan", () => {
+    expect(getInfoPenjualan(dataPenjualanNovel)).toStrictEqual({
+      totalKeuntungan: "Rp. 17,654,000",
+      totalModal: "Rp. 43,131,000",
+      persentaseKeuntungan: "29%",
+      produkBukuTerlaris: "Garis Waktu",
+      penulisTerlaris: "Tere Liye",
+    });
+  });
+}

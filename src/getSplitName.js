@@ -3,7 +3,7 @@
  * @param {string} personName
  * @returns object
  */
-const getSplitName = (personName) => {
+export const getSplitName = (personName) => {
   const result = {
     firstName: "",
     middleName: "",
@@ -39,12 +39,27 @@ const getSplitName = (personName) => {
   }
 };
 
-const listOfNames = [
-  "Aldi Daniela Pranata",
-  "Dwi Kuncoro",
-  "Aurora",
-  "Aurora Aureliya Sukma Darma",
-  0,
-];
-
-listOfNames.forEach((name) => console.log(getSplitName(name)));
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest;
+  it("getSplitName", () => {
+    expect(getSplitName("Aldi Daniela Pranata")).toStrictEqual({
+      firstName: "Aldi",
+      middleName: "Daniela",
+      lastName: "Pranata",
+    });
+    expect(getSplitName("Dwi Kuncoro")).toStrictEqual({
+      firstName: "Dwi",
+      middleName: null,
+      lastName: "Kuncoro",
+    });
+    expect(getSplitName("Aurora")).toStrictEqual({
+      firstName: "Aurora",
+      middleName: null,
+      lastName: null,
+    });
+    expect(getSplitName("Aurora Aureliya Sukma Darma")).toBe(
+      "Error: This function is only for 3 characters name"
+    );
+    expect(getSplitName(0)).toBe("Error: parameter type cannot be number");
+  });
+}
